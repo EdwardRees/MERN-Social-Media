@@ -1,0 +1,5 @@
+{
+  "mongoProd": "mongodb+srv://EdwardR:themodbros@socialmedia.ctadt.mongodb.net/socialmedia?retryWrites=true&w=majority",
+  "mongoDev": "mongodb://127.0.0.1:27017/social_media",
+  "jwtSecret": "socialmedia"
+}
