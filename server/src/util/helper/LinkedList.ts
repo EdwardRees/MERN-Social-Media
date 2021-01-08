@@ -147,4 +147,8 @@ class LinkedList<T> extends List<T> {
       data = data.getNext();
     }
   }
+
+  public [Symbol.iterator](){
+    return this.iterator();
+  }
 }
