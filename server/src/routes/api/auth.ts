@@ -11,10 +11,8 @@ const authRouter = express.Router();
  */
 authRouter.get("/", auth, async (req: any, res: any) => {
   try {
-    const user = await (await User.findById(req.user.id)).isSelected(
-      "-password"
-    );
-    res.json(user);
+    const user = await User.findById(req.user.id).select("-password");
+    res.json({user});
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server error");

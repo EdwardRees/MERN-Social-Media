@@ -13,5 +13,5 @@ GET http://localhost:8080/api/auth HTTP/1.1
 GET http://localhost:8080/api/posts HTTP/1.1
 
 ###
-GET http://localhost:8080/api/auth HTTP/1.1
-X-auth-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZmODNkMTQzOTU2NGUxY2Q1ZGI4YTlmIn0sImlhdCI6MTYxMDEwNDA4NCwiZXhwIjoxNjEwMTIyMDg0fQ.YEQ3uesSjxyf37rLTAp819Wfe7ROuLWHPz9-ec-GOMI"
+GET http://localhost:8080/api/auth/ HTTP/1.1
+X-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZmODNkMTQzOTU2NGUxY2Q1ZGI4YTlmIn0sImlhdCI6MTYxMDEwNDA4NCwiZXhwIjoxNjEwMTIyMDg0fQ.YEQ3uesSjxyf37rLTAp819Wfe7ROuLWHPz9-ec-GOMI
