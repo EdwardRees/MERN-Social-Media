@@ -83,6 +83,33 @@ class LinkedList<T> extends List<T> {
     }
   }
 
+  public addAll(list: LinkedList<T>): boolean{
+    for(let i=0; i<list.size(); i++){
+      this.add(list.get(i));
+    }
+    return true;
+  }
+
+  public clear(): void {
+    for(let i=this.length; i>-1; i--){
+      this.remove(i);
+    }
+  }
+
+  public contains(value: T): boolean {
+    if(this.head === null){
+      return false;
+    }
+    let temp: Node<T> = this.head;
+    while(temp !== null){
+      if(temp.getData() === value){
+        return true;
+      }
+      temp = temp.getNext();
+    }
+    return false;
+  }
+
   public get(index: number): T {
     if (this.head === null) {
       throw new Error("Empty List!");
