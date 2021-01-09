@@ -1,3 +1,4 @@
+### Sign up
 POST http://localhost:8080/api/users HTTP/1.1
 Content-Type: application/json
 
@@ -5,4 +6,36 @@ Content-Type: application/json
   "name": "Edward Rees",
   "email": "erees.hk@gmail.com",
   "password": "HelloWorld123"
+}
+### Sign up new
+POST http://localhost:8080/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Edward Rees",
+  "email": "erees.hk@splusgroup.net",
+  "password": "HelloWorld123"
+}
+
+### Login
+POST http://localhost:8080/api/auth HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "erees.hk@splusgroup.net",
+  "password": "HelloWorld123"
+}
+
+### Profile Create / Update
+POST http://localhost:8080/api/profile HTTP/1.1
+X-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZmOTdmN2Q1ZGE4YmQ5OWIzOWU1N2I2In0sImlhdCI6MTYxMDE4NjY2MiwiZXhwIjoxNjEwMjA0NjYyfQ.zYInjt6HQXEixUFl-Pn1_koDH7F8_oj43lCSRdxKjV4
+Content-Type: application/json
+
+{
+  "status": "Junior Developer",
+  "skills": "HTML, CSS, JS, Lua",
+  "location": "Hong Kong, Hong Kong SAR",
+  "bio": "I am a developer and educator at Byte Education",
+  "githubusername": "EdwardRees",
+  "linkedin": "Edward-R-0601"
 }

@@ -1,17 +1,30 @@
+### Get main
 GET http://localhost:8080/api/ HTTP/1.1
 
-###
+### Get Profile
 GET http://localhost:8080/api/profile HTTP/1.1
 
-###
+### Get Users
 GET http://localhost:8080/api/users HTTP/1.1
 
-###
+### Get Auth
 GET http://localhost:8080/api/auth HTTP/1.1
 
-###
+### Get Posts
 GET http://localhost:8080/api/posts HTTP/1.1
 
-###
+### Get Authentication
 GET http://localhost:8080/api/auth/ HTTP/1.1
-X-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZmODNkMTQzOTU2NGUxY2Q1ZGI4YTlmIn0sImlhdCI6MTYxMDEwNDA4NCwiZXhwIjoxNjEwMTIyMDg0fQ.YEQ3uesSjxyf37rLTAp819Wfe7ROuLWHPz9-ec-GOMI
+X-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZmODNkMTQzOTU2NGUxY2Q1ZGI4YTlmIn0sImlhdCI6MTYxMDE1MjcxMCwiZXhwIjoxNjEwMTcwNzEwfQ.7cpi-n_ITpJBOSOSAiOyYUGq-TNYWkiMym3PBMp2D9Q
+
+### Logged In User
+GET http://localhost:8080/api/profile/me HTTP/1.1
+X-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZmODNkMTQzOTU2NGUxY2Q1ZGI4YTlmIn0sImlhdCI6MTYxMDE4NDg3MCwiZXhwIjoxNjEwMjAyODcwfQ.kHcb9lyzp9r5Ds1Lvy64AC9VGnKH4d2FKDECYnQmJbA
+
+
+### Get all profiles
+GET http://localhost:8080/api/profile HTTP/1.1
+
+
+### Get specific user from id
+GET http://localhost:8080/api/profile/user/5ff83d1439564e1cd5db8a9f HTTP/1.1

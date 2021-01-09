@@ -1,18 +1,17 @@
 import express from "express";
+import { connectDB } from "./config";
+import {
+  authRouter,
+  chatRouter,
+  eventsRouter,
+  postsRouter,
+  profileRouter,
+  userRouter,
+} from "./routes/api";
 
 const app = express();
 
 const PORT = process.env.PORT || 8080;
-
-import { connectDB } from "./config";
-
-import {
-  userRouter,
-  authRouter,
-  postsRouter,
-  profileRouter,
-  chatRouter
-} from "./routes/api";
 
 // Connect to database
 connectDB();
@@ -26,6 +25,7 @@ app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/profile", profileRouter);
 app.use("/api/posts", postsRouter);
+app.use("/api/events", eventsRouter);
 app.use("/api/chat", chatRouter);
 
 app.get("/", (req: any, res: any) => {
