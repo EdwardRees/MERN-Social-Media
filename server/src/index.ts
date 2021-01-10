@@ -1,5 +1,6 @@
 import express from "express";
 import { connectDB } from "./config";
+import http from 'http';
 import {
   authRouter,
   chatRouter,
@@ -10,6 +11,8 @@ import {
 } from "./routes/api";
 
 const app = express();
+
+const server = http.createServer(app);
 
 const PORT = process.env.PORT || 8080;
 
@@ -28,8 +31,13 @@ app.use("/api/posts", postsRouter);
 app.use("/api/events", eventsRouter);
 app.use("/api/chat", chatRouter);
 
-app.get("/", (req: any, res: any) => {
+app.get("/api", (req: any, res: any) => {
   res.send("API Running");
 });
 
-app.listen(PORT, () => console.info(`Server started on port ${PORT}`));
+// app.listen(PORT, () => console.info(`Server started on port ${PORT}`));
+
+// export default app;
+
+server.listen(PORT, () => console.info(`Server started on port ${PORT}`));
+export default server;
