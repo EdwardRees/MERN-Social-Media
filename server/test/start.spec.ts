@@ -1,8 +1,6 @@
-import * as chai from "chai";
+import chai from "chai";
+import { describe } from "mocha";
 import app from "../src";
-import * as mocha from "mocha";
-import { expect } from "chai";
-import request from "request";
 
 chai.use(require("chai-http"));
 chai.should();

@@ -1,7 +1,5 @@
-import * as chai from "chai";
-import app from "../src";
-import * as mocha from "mocha";
-import { expect } from "chai";
+import chai, { expect } from "chai";
+import { describe } from "mocha";
 import request from "request";
 
 chai.use(require("chai-http"));
@@ -20,4 +18,3 @@ describe("Profiles", () => {
     });
   });
 });
-
