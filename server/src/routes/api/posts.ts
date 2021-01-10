@@ -2,8 +2,8 @@ import express from "express";
 
 const postsRouter = express.Router();
 
-/**
- * @route GET api/postss
+/** 
+ * @route GET api/posts
  * @desc base route
  * @access Public
  */

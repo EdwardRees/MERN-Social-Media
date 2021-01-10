@@ -5,13 +5,15 @@ import request from "request";
 chai.use(require("chai-http"));
 chai.should();
 
-describe("Main Api", () => {
-  describe("GET /api/", () => {
-    it("Should get starting page", (done: any) => {
+let PORT = process.env.PORT || 8080;
+
+describe("Users", () => {
+  describe("GET /api/users", () => {
+    it("Should be blank", (done: any) => {
       request.get(
-        "http://localhost:8080/api/",
+        `http://localhost:${PORT}/api/users/`,
         (err: any, res: any, body: any) => {
-          expect(res.statusCode).equal(200);
+          expect(res.statusCode).equal(404);
           done();
         }
       );

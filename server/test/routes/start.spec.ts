@@ -1,17 +1,19 @@
 import chai from "chai";
 import { describe } from "mocha";
-import app from "../src";
+import app from "../../src";
 
 chai.use(require("chai-http"));
 chai.should();
 
+let PORT = process.env.PORT || 8080;
+
 describe("Server Start", () => {
   describe("server response", () => {
-    before(function () {
-      app.listen(8080);
+    before(() => {
+      app.listen(PORT);
     });
 
-    after(function () {
+    after(() => {
       app.close();
     });
   });

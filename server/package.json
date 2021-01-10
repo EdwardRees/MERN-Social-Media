@@ -10,7 +10,9 @@
     "build": "tsc",
     "prestart": "yarn build",
     "start": "node .",
-    "test": "env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register 'test/*.spec.ts' --exit"
+    "test": "env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register 'test/**/*.spec.ts' --exit",
+    "test-routes": "env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register 'test/routes/*.spec.ts' --exit",
+    "test-structs": "env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register 'test/util/*.spec.ts' --exit"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -37,6 +39,7 @@
     "@types/express": "^4.17.9",
     "@types/mocha": "^8.2.0",
     "@types/node": "^14.14.20",
+    "gulp": "^4.0.2",
     "ts-node": "^9.1.1"
   }
 }

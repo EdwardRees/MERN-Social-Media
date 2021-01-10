@@ -1,5 +1,5 @@
 abstract class List<T> {
-  public abstract add(value: T, index?: number): boolean;
+  public abstract add(value: T): boolean;
   public abstract addAll(list: List<T>): boolean;
   public abstract clear(): void;
   public abstract contains(value: T): boolean;
@@ -9,3 +9,4 @@ abstract class List<T> {
   public abstract toString(): string;
   public abstract iterator(): IterableIterator<T>;
 }
+export { List };
