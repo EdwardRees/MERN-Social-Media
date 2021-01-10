@@ -205,7 +205,7 @@ class LinkedList<T> extends List<T> {
       }
       temp = temp.getNext();
     }
-    return index;
+    return -1;
   }
 
   /**
@@ -273,6 +273,7 @@ class LinkedList<T> extends List<T> {
       str += " ";
       temp = temp.getNext();
     }
+    str = str.trim();
     return str;
   }
 }

@@ -102,13 +102,49 @@ describe("LinkedList", () => {
         expect(() => numbers.get(2)).to.not.throw("Index out of bounds!");
         done();
       });
-      it("should get 3 at index 2", (done: any) => { 
+      it("should get 3 at index 2", (done: any) => {
         expect(numbers.get(2)).equals(3);
         done();
       });
     });
   });
-  describe("toString", () => {});
-  describe("Remove", () => {});
-  describe("Clear", () => {});
+  describe("toString", () => {
+    it("should print out the elements correctly", (done: any) => {
+      expect(numbers.toString()).equals("List: 1 2 3");
+      done();
+    });
+  });
+  describe("indexOf", () => {
+    it("should find 0 as the index of 1", (done: any) => {
+      expect(numbers.indexOf(1)).equals(0);
+      done();
+    });
+    it("should find -1 as the index of 4, as it doesn't exist", (done: any) => {
+      expect(numbers.indexOf(4)).equals(-1);
+      done();
+    });
+    it("should find 2 as the index of 3", (done: any) => {
+      expect(numbers.indexOf(3)).equals(2);
+      done();
+    });
+  });
+  describe("Set", () => {
+    it("should update the value at index 2 from 2 to 5", (done: any) => {
+      expect(numbers.set(2, 5)).equals(5);
+      done();
+    })
+  });
+  describe("Remove", () => {
+    it("should remove the last element", (done: any) => {
+      expect(numbers.remove(2)).equals(5);
+      done();
+    });
+  });
+  describe("Clear", () => {
+    it("should clear the list", (done: any) => {
+      numbers.clear();
+      expect(numbers.size()).equals(0);
+      done();
+    })
+  });
 });
