@@ -19,4 +19,12 @@ describe("Profiles", () => {
       );
     });
   });
+  describe("GET /api/profile/github/edwardrees", () => {
+    it("Should get github profile", (done: any) => {
+      request.get(`http://localhost:${PORT}/api/profile/github/edwardrees`, (err: any, res: any, body: any) => {
+        expect(res.statusCode).equal(200);
+        done();
+      });
+    });
+  });
 });

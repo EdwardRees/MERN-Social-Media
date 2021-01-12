@@ -1,5 +1,7 @@
 {
   "mongoProd": "mongodb+srv://EdwardR:themodbros@socialmedia.ctadt.mongodb.net/socialmedia?retryWrites=true&w=majority",
   "mongoDev": "mongodb://127.0.0.1:27017/social_media",
-  "jwtSecret": "socialmedia"
+  "jwtSecret": "socialmedia",
+  "githubClientId": "b4a36809dc89b825b3a1",
+  "githubSecret": "339de6313a7e1a80d4b2d6cff42276ab527b5ce3"
 }

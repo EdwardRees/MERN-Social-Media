@@ -4,6 +4,9 @@ const profileRouter = express.Router();
 import { check, validationResult } from "express-validator";
 import User from "../../db/User.model";
 import Profile from "../../db/Profile.model";
+import config from "config";
+import request from "request";
+
 /**
  * @route GET api/profile/me
  * @description Get current user's profile
@@ -245,5 +248,112 @@ profileRouter.delete(
     }
   }
 );
+
+/**
+ * @route PUT api/profile/education
+ * @description Add profile education
+ * @access Private
+ */
+profileRouter.put(
+  "/education",
+  [
+    auth,
+    check("school", "School is required").not().isEmpty(),
+    check("degree", "Degree is required").not().isEmpty(),
+    check("fieldofstudy", "Field of Study is required").not().isEmpty(),
+    check("from", "From date is required").not().isEmpty(),
+  ],
+  async (req: any, res: any) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {
+      school,
+      degree,
+      fieldofstudy,
+      from,
+      to,
+      current,
+      description,
+    } = req.body;
+
+    const newEdu = {
+      school,
+      degree,
+      fieldofstudy,
+      from,
+      to,
+      current,
+      description,
+    };
+
+    try {
+      const profile: any = await Profile.findOne({ user: req.user.id });
+      profile.education.unshift(newEdu);
+      await profile.save();
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+/**
+ * @route DELETE api/profile/education/:edu_id
+ * @description Delete education from profile
+ * @access Private
+ */
+profileRouter.delete("/education/:edu_id", auth, async (req: any, res: any) => {
+  try {
+    const profile: any = await Profile.findOne({ user: req.user.id });
+
+    // Get remove index
+    const removeIndex = profile.education
+      .map((item: any) => item.id)
+      .indexOf(req.params.edu_id);
+
+    profile.education.splice(removeIndex, 1);
+
+    await profile.save();
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+/**
+ * @route GET api/profile/github/:username
+ * @description Get user repos from Github
+ * @access Public
+ */
+profileRouter.get("/github/:username", async (req: any, res: any) => {
+  try {
+    const options = {
+      uri: `https://api.github.com/users/${
+        req.params.username
+      }/repos?per_page=5&sort=created:asc&client_id=${config.get(
+        "githubClientId"
+      )}&client_secret=${config.get("githubSecret")}`,
+      method: "GET",
+      headers: { "user-agent": "node.js" },
+    };
+    request(options, (error: any, response: any, body: any) => {
+      if (error) {
+        console.error(error);
+      }
+      if (response.statusCode !== 200) {
+        return res.status(404).json({ msg: "No Github Profile Found" });
+      }
+      res.json(JSON.parse(body));
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 export { profileRouter };
