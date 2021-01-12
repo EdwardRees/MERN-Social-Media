@@ -6,7 +6,7 @@ import User from "../../db/User.model";
 import Profile from "../../db/Profile.model";
 /**
  * @route GET api/profile/me
- * @desc Get current user's profile
+ * @description Get current user's profile
  * @access Private
  */
 profileRouter.get(
@@ -32,7 +32,7 @@ profileRouter.get(
 
 /**
  * @route POST  api/profile
- * @desc Create or update user profile
+ * @description Create or update user profile
  * @access Private
  */
 profileRouter.post(
@@ -112,7 +112,7 @@ profileRouter.post(
 
 /**
  * @route GET  api/profile
- * @desc Get all profiles
+ * @description Get all profiles
  * @access Public
  */
 profileRouter.get("/", async (req: any, res: any) => {
@@ -127,7 +127,7 @@ profileRouter.get("/", async (req: any, res: any) => {
 
 /**
  * @route GET  api/profile/user/:user_id
- * @desc Get profile by user ID
+ * @description Get profile by user ID
  * @access Public
  */
 profileRouter.get("/user/:user_id", async (req: any, res: any) => {
@@ -148,7 +148,7 @@ profileRouter.get("/user/:user_id", async (req: any, res: any) => {
 
 /**
  * @route DELETE api/profile
- * @desc Delete profile, user, & posts
+ * @description Delete profile, user, & posts
  * @access Private
  */
 profileRouter.delete("/", auth, async (req: any, res: any) => {
@@ -169,7 +169,7 @@ profileRouter.delete("/", auth, async (req: any, res: any) => {
 
 /**
  * @route PUT api/profile/experience
- * @desc Add profile experience
+ * @description Add profile experience
  * @access Private
  */
 profileRouter.put(
@@ -209,6 +209,34 @@ profileRouter.put(
     try {
       const profile: any = await Profile.findOne({ user: req.user.id });
       profile.experience.unshift(newExp);
+      await profile.save();
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+/**
+ * @route DELETE api/profile/experience/:exp_id
+ * @description Delete experience from profile
+ * @access Private
+ */
+profileRouter.delete(
+  "/experience/:exp_id",
+  auth,
+  async (req: any, res: any) => {
+    try {
+      const profile: any = await Profile.findOne({ user: req.user.id });
+
+      // Get remove index
+      const removeIndex = profile.experience
+        .map((item: any) => item.id)
+        .indexOf(req.params.exp_id);
+
+      profile.experience.splice(removeIndex, 1);
+
       await profile.save();
       res.json(profile);
     } catch (err) {
