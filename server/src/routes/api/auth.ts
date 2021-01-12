@@ -10,8 +10,8 @@ const authRouter = express.Router();
 
 /**
  * @route GET api/auth
- * @desc base route
- * @access Public
+ * @desc Get User based on authenticate ID
+ * @access Private
  */
 authRouter.get("/", auth, async (req: any, res: any) => {
   try {

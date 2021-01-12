@@ -1,11 +1,12 @@
-import express, { Router } from "express";
+import config from "config";
+import express from "express";
+import { check, validationResult } from "express-validator";
+import request from "request";
+import Profile from "../../db/Profile.model";
+import User from "../../db/User.model";
+import Post from "../../db/Post.model";
 import auth from "../../middleware/auth";
 const profileRouter = express.Router();
-import { check, validationResult } from "express-validator";
-import User from "../../db/User.model";
-import Profile from "../../db/Profile.model";
-import config from "config";
-import request from "request";
 
 /**
  * @route GET api/profile/me
@@ -157,6 +158,7 @@ profileRouter.get("/user/:user_id", async (req: any, res: any) => {
 profileRouter.delete("/", auth, async (req: any, res: any) => {
   try {
     // TODO Remove users posts
+    await Post.findOneAndRemove({ user: req.user.id });
 
     // Remove profile
     await Profile.findOneAndRemove({ user: req.user.id });

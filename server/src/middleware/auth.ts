@@ -18,7 +18,7 @@ export default function (req: any, res: any, next: any) {
     req.user = decoded.user;
     next();
   } catch (err) {
-    console.error(err.message);
+    // console.error(`Auth Middleware: ${err.message}`);
     res.status(401).json({ msg: "Invalid token" });
   }
 }
