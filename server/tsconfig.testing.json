@@ -11,7 +11,8 @@
   },
   "include": [
     "scripts/**/*.ts",
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "test/**/*.spec.ts"
   ],
   "exclude": [
     "node_modules"

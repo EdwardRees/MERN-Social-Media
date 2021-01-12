@@ -57,6 +57,8 @@ describe("LinkedList", () => {
       it("should successfully add all", (done: any) => {
         let secondary: LinkedList<number> = new LinkedList<number>();
         secondary.add(3);
+        secondary.add(4);
+        secondary.add(5);
         expect(numbers.addAll(secondary)).true;
         done();
       });
@@ -72,7 +74,7 @@ describe("LinkedList", () => {
       done();
     });
     it("should not contain 4", (done: any) => {
-      expect(numbers.contains(4)).false;
+      expect(numbers.contains(10)).false;
       done();
     });
   });
@@ -110,7 +112,7 @@ describe("LinkedList", () => {
   });
   describe("toString", () => {
     it("should print out the elements correctly", (done: any) => {
-      expect(numbers.toString()).equals("List: 1 2 3");
+      expect(numbers.toString()).equals("List: 1 2 3 4 5");
       done();
     });
   });
@@ -119,8 +121,8 @@ describe("LinkedList", () => {
       expect(numbers.indexOf(1)).equals(0);
       done();
     });
-    it("should find -1 as the index of 4, as it doesn't exist", (done: any) => {
-      expect(numbers.indexOf(4)).equals(-1);
+    it("should find -1 as the index of 10, as it doesn't exist", (done: any) => {
+      expect(numbers.indexOf(10)).equals(-1);
       done();
     });
     it("should find 2 as the index of 3", (done: any) => {
@@ -130,13 +132,13 @@ describe("LinkedList", () => {
   });
   describe("Set", () => {
     it("should update the value at index 2 from 2 to 5", (done: any) => {
-      expect(numbers.set(2, 5)).equals(5);
+      expect(numbers.set(2, 8)).equals(8);
       done();
-    })
+    });
   });
   describe("Remove", () => {
-    it("should remove the last element", (done: any) => {
-      expect(numbers.remove(2)).equals(5);
+    it("should remove the element at index 2", (done: any) => {
+      expect(numbers.remove(2)).equals(8);
       done();
     });
   });
@@ -145,6 +147,6 @@ describe("LinkedList", () => {
       numbers.clear();
       expect(numbers.size()).equals(0);
       done();
-    })
+    });
   });
 });
