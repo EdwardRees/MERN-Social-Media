@@ -11,7 +11,7 @@ let res: any;
 describe("Auth", () => {
   before(async () => {
     res = await axios.post(`http://localhost:${PORT}/api/auth`, {
-      email: "erees.hk@gmail.com",
+      email: "erees.hk@edwardrees.info",
       password: "1234567890",
     });
   });

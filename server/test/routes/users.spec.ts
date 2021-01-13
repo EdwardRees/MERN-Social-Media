@@ -13,7 +13,7 @@ describe("Users", () => {
     it("Should create a new user", (done: any) => {
       let call: any = axios.post(`http://localhost:${PORT}/api/users`, {
         name: "Edward Rees",
-        email: "erees.hk@gmail.com",
+        email: "erees.hk@edwardrees.info",
         password: "1234567890",
       });
       call.should.be.fulfilled
@@ -23,7 +23,7 @@ describe("Users", () => {
     it(`Should fail and say "User already exists"`, (done: any) => {
       let call: any = axios.post(`http://localhost:${PORT}/api/users`, {
         name: "Edward Rees",
-        email: "erees.hk@gmail.com",
+        email: "erees.hk@edwardrees.info",
         password: "1234567890",
       });
       call.should.be.rejected
