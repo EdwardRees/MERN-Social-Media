@@ -1,6 +1,7 @@
 import express from "express";
 import { connectDB } from "./config";
-import http from 'http';
+import http from "http";
+import cors from "cors";
 import {
   authRouter,
   chatRouter,
@@ -16,10 +17,32 @@ const server = http.createServer(app);
 
 const PORT = process.env.PORT || 8080;
 
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Access-Control-Allow-Origin"],
+  },
+});
+
 // Connect to database
 connectDB();
 
-// Init middlware
+app.use(function(req: any, res: any, next: any) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
+
+app.use(
+  cors()
+  /*{
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Access-Control-Allow-Origin"],
+  }*/
+);
+// Init middleware
 app.use(express.json());
 
 // define Routes
