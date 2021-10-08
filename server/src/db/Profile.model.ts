@@ -94,7 +94,7 @@ const Profile = new Schema({
     twitter: {
       type: String,
     },
-    facbeook: {
+    facebook: {
       type: String,
     },
     linkedin: {
@@ -110,4 +110,4 @@ const Profile = new Schema({
   },
 });
 
-export default mongoose.model("Profile", Profile);
+export default mongoose.model("Profile", Profile); 
